@@ -1,0 +1,104 @@
+<div nz-col nzSpan="12">
+  <button nz-button (click)="openAddDialog()" nzType="primary" nzSize="default" nzShape="round">Ekle</button>
+</div>
+
+<nz-table
+  #table
+  [nzData]="list"
+  [nzFrontPagination]="false"
+  [nzLoading]="loading"
+  [nzTotal]="total"
+  [nzPageSize]="pageSize"
+  [nzShowPagination]="true"
+  nzSize="small"
+  [nzPageIndex]="pageIndex"
+  [nzShowSizeChanger]="true"
+  [nzPageSizeOptions]="[10,25,50]"
+  [nzFooter]="footerTbl"
+  (nzQueryParams)="onQueryParamsChange($event)">
+  <thead>
+  <tr>
+    <th nzColumnKey="tag">Id</th>
+    <th nzColumnKey="desc">Rol Adı</th>
+    <th nzColumnKey="desc" nzAlign="right">İşlem</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of table.data">
+    <td>{{ data.id }}</td>
+    <td>{{ data.name }}</td>
+    <td nzAlign="right">
+      <button nz-button nzSize="small"  nzType="primary" nzShape="round" (click)="getById(data.id)">Detay</button>
+    </td>
+  </tr>
+  </tbody>
+  <ng-template  #footerTbl>
+    <strong>Kayıt Sayısı : {{total}}</strong>
+  </ng-template>
+</nz-table>
+
+
+<!--Update dialog-->
+<nz-drawer
+  [nzBodyStyle]="{ overflow: 'auto' }"
+  [nzMaskClosable]="false"
+  [nzWidth]="540"
+  [nzVisible]="visibleUpdateDialog"
+  nzTitle="Detay"
+  [nzFooter]="footerTplUpdate"
+  (nzOnClose)="closeUpdateDialog()">
+
+  <form nz-form [formGroup]="formUpdate" (ngSubmit)="update()">
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24">Id</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input nz-input formControlName="id" readonly/>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24">Rol Adı</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input nz-input formControlName="name"/>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+
+  <ng-template  #footerTplUpdate>
+    <div style="float: initial">
+      <button nz-button nzShape="round" nzType="primary" style="margin-right: 8px" (click)="update()">Güncelle</button>
+      <button nz-button nzShape="round" nzDanger style="margin-left: 355px" (click)="delete()">Sil</button>
+    </div>
+  </ng-template>
+</nz-drawer>
+
+
+<!--Add Dialog-->
+<nz-drawer
+  [nzBodyStyle]="{ overflow: 'auto' }"
+  [nzMaskClosable]="false"
+  [nzWidth]="540"
+  [nzVisible]="visibleAddDialog"
+  nzTitle="Yeni Ekle"
+  [nzFooter]="footerTplAdd"
+  (nzOnClose)="closeAddDialog()">
+
+  <form nz-form [formGroup]="formAdd" (ngSubmit)="add()">
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24">Rol Adı</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input nz-input formControlName="name"/>
+      </nz-form-control>
+    </nz-form-item>
+
+  </form>
+
+
+  <ng-template #footerTplAdd>
+    <div style="float: initial">
+      <button nz-button nzShape="round" nzType="primary" style="margin-right: 8px" (click)="add()">Kaydet</button>
+      <button nz-button nzShape="round" nzDanger style="margin-left: 345px" (click)="closeAddDialog()">İptal</button>
+    </div>
+  </ng-template>
+</nz-drawer>
+

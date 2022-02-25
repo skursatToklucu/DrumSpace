@@ -1,0 +1,40 @@
+<nz-table
+  #table
+  [nzData]="list"
+  [nzFrontPagination]="false"
+  [nzLoading]="loading"
+  [nzTotal]="total"
+  [nzPageSize]="pageSize"
+  [nzShowPagination]="true"
+  nzSize="small"
+  [nzPageIndex]="pageIndex"
+  [nzShowSizeChanger]="true"
+  [nzPageSizeOptions]="[10,25,50]"
+  [nzFooter]="footerTbl"
+  (nzQueryParams)="onQueryParamsChange($event)">
+  <thead>
+  <tr>
+    <th nzColumnKey="id">Id</th>
+    <th nzColumnKey="name">İsim</th>
+    <th nzColumnKey="desc">Açıklama</th>
+    <th nzColumnKey="parentId">Ana Menu Id</th>
+    <th nzColumnKey="path">Url</th>
+    <th nzColumnKey="operation" nzAlign="right">İşlem</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of table.data">
+    <td>{{ data.id }}</td>
+    <td>{{ data.name }}</td>
+    <td>{{ data.description }}</td>
+    <td>{{ data.parentId }}</td>
+    <td>{{ data.path }}</td>
+    <td nzAlign="right">
+      <button nz-button nzSize="small"  nzType="primary" nzShape="round">Detay</button>
+    </td>
+  </tr>
+  </tbody>
+  <ng-template #footerTbl>
+    <strong>Kayıt Sayısı : {{total}}</strong>
+  </ng-template>
+</nz-table>

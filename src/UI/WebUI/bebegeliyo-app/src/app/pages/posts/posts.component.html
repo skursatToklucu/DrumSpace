@@ -1,0 +1,189 @@
+<div nz-col nzSpan="12">
+  <button nz-button (click)="openAddDialog()" nzType="primary" nzSize="default" nzShape="round">Ekle</button>
+</div>
+
+<nz-table
+  #table
+  [nzData]="list"
+  [nzFrontPagination]="false"
+  [nzLoading]="loading"
+  [nzTotal]="total"
+  [nzPageSize]="pageSize"
+  [nzShowPagination]="true"
+  nzSize="small"
+  [nzPageIndex]="pageIndex"
+  [nzShowSizeChanger]="true"
+  [nzPageSizeOptions]="[10,25,50]"
+  [nzFooter]="footerTbl"
+  (nzQueryParams)="onQueryParamsChange($event)">
+  <thead>
+  <tr>
+    <th nzColumnKey="tag">Etiket</th>
+    <th nzColumnKey="desc">Açıklama</th>
+    <th nzColumnKey="desc">Etiketler</th>
+    <th nzColumnKey="desc" nzAlign="right">İşlem</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of table.data">
+    <td>{{ data.title }}</td>
+    <td>{{ data.description }}</td>
+    <td>{{ data.tag}}</td>
+    <td nzAlign="right">
+      <button nz-button nzSize="small" nzType="primary" nzShape="round" (click)="getById(data.id)">Detay</button>
+    </td>
+  </tr>
+  </tbody>
+  <ng-template #footerTbl>
+    <strong>Kayıt Sayısı : {{total}}</strong>
+  </ng-template>
+</nz-table>
+
+
+<!--Add Dialog-->
+<nz-drawer
+  [nzBodyStyle]="{ overflow: 'auto' }"
+  [nzMaskClosable]="false"
+  [nzWidth]="640"
+  [nzVisible]="visibleAddDialog"
+  nzTitle="Yeni Ekle"
+  [nzFooter]="footerTplAdd"
+  (nzOnClose)="closeAddDialog()">
+
+  <form nz-form [formGroup]="formAdd" (ngSubmit)="add()">
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24">Başlık</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input nz-input formControlName="title"/>
+      </nz-form-control>
+    </nz-form-item>
+
+<!--    <nz-form-item>-->
+<!--      <nz-form-label [nzSm]="6" [nzXs]="24">İçerik</nz-form-label>-->
+<!--      <nz-form-control [nzSm]="14" [nzXs]="24">-->
+<!--        <input nz-input formControlName="content"/>-->
+<!--      </nz-form-control>-->
+<!--    </nz-form-item>-->
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6"  [nzXs]="24">Gönderi Türü</nz-form-label>
+      <nz-select style="width: 290px;"
+                 [nzDisabled]="true"
+                 [ngModel]="postTypeValue"
+                 formControlName="postType"
+                 nzAllowClear
+                 nzPlaceHolder="Metin">
+        <nz-option *ngFor="let option of postTypes" [nzValue]="option.id" [nzLabel]="option.value"></nz-option>
+      </nz-select>
+
+
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24">Açıklama</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <textarea
+          formControlName="description" nz-input
+          [nzAutosize]="{ minRows: 7, maxRows: 7 }"></textarea>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24">Etiket</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <nz-select
+          formControlName="tags"
+          [(ngModel)]="selectedTags"
+          nzMode="selectedTags"
+          nzPlaceHolder="Etiket seçimi yapınız...">
+          <nz-option *ngFor="let option of tagList" [nzLabel]="option.title" [nzValue]="option"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+
+
+  <ng-template #footerTplAdd>
+    <div style="justify-content: space-between">
+      <button nz-button nzShape="round" nzType="primary" (click)="add()">Kaydet</button>
+      <button nz-button nzShape="round" nzDanger (click)="closeAddDialog()">İptal
+      </button>
+    </div>
+  </ng-template>
+</nz-drawer>
+
+
+
+
+
+
+<!--Update dialog-->
+<nz-drawer
+  [nzBodyStyle]="{ overflow: 'auto' }"
+  [nzMaskClosable]="false"
+  [nzWidth]="540"
+  [nzVisible]="visibleUpdateDialog"
+  nzTitle="Detay"
+  [nzFooter]="footerTplUpdate"
+  (nzOnClose)="closeUpdateDialog()">
+
+  <form nz-form [formGroup]="formUpdate" (ngSubmit)="update()">
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24">Başlık</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input nz-input formControlName="title"/>
+      </nz-form-control>
+    </nz-form-item>
+
+<!--    <nz-form-item>-->
+<!--      <nz-form-label [nzSm]="6" [nzXs]="24">İçerik</nz-form-label>-->
+<!--      <nz-form-control [nzSm]="14" [nzXs]="24">-->
+<!--        <input nz-input formControlName="content"/>-->
+<!--      </nz-form-control>-->
+<!--    </nz-form-item>-->
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24">Gönderi Türü</nz-form-label>
+      <nz-select style="width: 290px;"
+                 [ngModel]="postTypeValue"
+                 [nzDisabled]="true"
+                 formControlName="postType"
+                 nzAllowClear
+                 nzPlaceHolder="Seçim yapınız...">
+        <nz-option *ngFor="let option of postTypes" [nzValue]="option.id" [nzLabel]="option.value"></nz-option>
+      </nz-select>
+
+
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24">Açıklama</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <textarea
+          formControlName="description" nz-input
+          [nzAutosize]="{ minRows: 7, maxRows: 7 }"></textarea>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24">Etiket</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <nz-select
+          formControlName="tags"
+          [(ngModel)]="selectedTags"
+          nzMode="selectedTags"
+          nzPlaceHolder="Etiket seçimi yapınız...">
+          <nz-option *ngFor="let option of tagList" [nzLabel]="option.title" [nzValue]="option"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+  </form>
+
+  <ng-template #footerTplUpdate>
+    <div style="float: initial">
+      <button nz-button nzShape="round" nzType="primary" style="margin-right: 8px" (click)="update()">Güncelle</button>
+      <button nz-button nzShape="round" nzDanger style="margin-left: 355px" (click)="delete()">Sil</button>
+    </div>
+  </ng-template>
+</nz-drawer>

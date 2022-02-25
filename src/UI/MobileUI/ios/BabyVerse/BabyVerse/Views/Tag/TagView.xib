@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Bold.otf">
+            <string>SFProText-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TagView" customModule="BabyVerse" customModuleProvider="target">
+            <connections>
+                <outlet property="mainView" destination="Ohb-hD-lVq" id="5fG-eS-y24"/>
+                <outlet property="tagNameLabel" destination="FQb-RT-tTZ" id="ZIy-xf-ItH"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="KvY-rM-zdY">
+            <rect key="frame" x="0.0" y="0.0" width="108" height="24"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ohb-hD-lVq">
+                    <rect key="frame" x="0.0" y="0.0" width="108" height="24"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FQb-RT-tTZ">
+                            <rect key="frame" x="8" y="4" width="92" height="16"/>
+                            <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="12"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="FQb-RT-tTZ" secondAttribute="trailing" constant="8" id="KwK-IL-Z96"/>
+                        <constraint firstItem="FQb-RT-tTZ" firstAttribute="top" secondItem="Ohb-hD-lVq" secondAttribute="top" constant="4" id="QxJ-M5-eXJ"/>
+                        <constraint firstItem="FQb-RT-tTZ" firstAttribute="leading" secondItem="Ohb-hD-lVq" secondAttribute="leading" constant="8" id="Zkc-Q2-3yN"/>
+                        <constraint firstAttribute="bottom" secondItem="FQb-RT-tTZ" secondAttribute="bottom" constant="4" id="c6P-XH-VcE"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Ohb-hD-lVq" secondAttribute="trailing" id="UiO-WO-4hY"/>
+                <constraint firstAttribute="bottom" secondItem="Ohb-hD-lVq" secondAttribute="bottom" id="n2D-rS-IxJ"/>
+                <constraint firstItem="Ohb-hD-lVq" firstAttribute="top" secondItem="KvY-rM-zdY" secondAttribute="top" id="q8T-k6-nZz"/>
+                <constraint firstItem="Ohb-hD-lVq" firstAttribute="leading" secondItem="KvY-rM-zdY" secondAttribute="leading" id="qPP-MU-8QO"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-714.49275362318849" y="280.58035714285711"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
