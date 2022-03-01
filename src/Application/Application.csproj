@@ -23,9 +23,7 @@
       <Folder Include="CommentPosts\Commands\DeleteCommentPosts" />
       <Folder Include="CommentPosts\Commands\UpdateCommentPosts" />
       <Folder Include="CommentPosts\EventHandlers" />
-      <Folder Include="Posts\EventHandlers" />
       <Folder Include="Roles\Commands\UpdateRole" />
-      <Folder Include="Tags\EventHandlers" />
       <Folder Include="Users\EventHandlers" />
     </ItemGroup>
 
