@@ -9,6 +9,9 @@ using DrumSpace.Application.Common.Models.Response;
 using DrumSpace.Application.Rudiments.Queries.Dtos;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Extensions.DependencyInjection;
+
 
 namespace DrumSpace.Application.Rudiments.Queries.GetRudimentsBySearch
 {
@@ -24,8 +27,8 @@ namespace DrumSpace.Application.Rudiments.Queries.GetRudimentsBySearch
 
         public async Task<ListResponse<RudimentDto>> Handle(GetRudimentsBySearchQuery request, CancellationToken cancellationToken)
         {
-            //TODO: Collate e dönmesi gerek
-            var filterQuery = await _context.Rudiments.Where(x => EF.Functions.Like(x.Pattern, $"{request.Pattern}%"))
+            var filterQuery = await _context.Rudiments
+                .FromSqlRaw($"SELECT * FROM Rudiments WHERE Pattern LIKE '{request.Pattern}%' COLLATE SQL_Latin1_General_CP1_CS_AS")
                 .ProjectTo<RudimentDto>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken: cancellationToken);
 

@@ -64,6 +64,7 @@ namespace DrumSpace.Infrastructure.Persistence
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<Rudiment>().Property(c => c.Pattern).UseCollation("SQL_Latin1_General_CP1_CI_AS");
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             base.OnModelCreating(builder);
         }
