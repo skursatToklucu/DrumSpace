@@ -21,9 +21,6 @@
 
     <ItemGroup>
       <Folder Include="Accounts\Queries" />
-      <Folder Include="CommentPosts\Commands\DeleteCommentPosts" />
-      <Folder Include="CommentPosts\Commands\UpdateCommentPosts" />
-      <Folder Include="CommentPosts\EventHandlers" />
       <Folder Include="Roles\Commands\UpdateRole" />
       <Folder Include="Users\EventHandlers" />
     </ItemGroup>

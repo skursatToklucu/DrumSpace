@@ -1,0 +1,73 @@
+<nz-layout class="layout">
+  <nz-sider nzCollapsible nzWidth="200px">
+    <div style="margin-top: 10px">
+      <h1 style="color: white; cursor: pointer" routerLink="/">ADMIN PANEL</h1>
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+      <li nz-submenu nzTitle="Kullanıcı Yönetimi" nzIcon="appstore">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/users">
+              <i nz-icon nzType="user"></i>
+              <span>Kullanıcılar</span>
+            </a>
+          </li>
+          <!--          <li nz-menu-item nzMatchRouter>-->
+          <!--            <a routerLink="/roles">-->
+          <!--              <i nz-icon nzType="apartment"></i>-->
+          <!--              <span>Rol</span>-->
+          <!--            </a>-->
+          <!--          </li>-->
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="Paylaşım Yönetimi" nzIcon="share-alt">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/tags">
+              <i nz-icon nzType="tags"></i>
+              <span>Etiket</span>
+            </a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/posts">
+              <i nz-icon nzType="pic-left" nzTheme="outline"></i>
+              <span>Gönderiler</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="Kontroller" nzIcon="setting">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/menu">
+              <i nz-icon nzType="menu-unfold" nzTheme="outline"></i>
+              <span>Menü</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <ul nz-menu nzTheme="dark" nzMode="horizontal">
+        <li nz-submenu nzTitle="Hesabım" nzIcon="user">
+          <ul>
+            <li nz-menu-item><i nz-icon nzType="login"></i>Giriş yap</li>
+            <li nz-menu-item><i nz-icon nzType="logout"></i>Kaydol</li>
+          </ul>
+        </li>
+      </ul>
+    </nz-header>
+    <nz-content>
+      <nz-breadcrumb>
+        <nz-breadcrumb-item>Kullanıcılar</nz-breadcrumb-item>
+        <nz-breadcrumb-item>Mami değil Admin</nz-breadcrumb-item>
+      </nz-breadcrumb>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+    <nz-footer>DrumSpace ©2022</nz-footer>
+  </nz-layout>
+</nz-layout>

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
@@ -9,8 +7,7 @@ using DrumSpace.Application.Common.Models.Response;
 using DrumSpace.Application.Rudiments.Queries.Dtos;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.Extensions.DependencyInjection;
+
 
 
 namespace DrumSpace.Application.Rudiments.Queries.GetRudimentsBySearch
