@@ -39,35 +39,8 @@ namespace DrumSpace.Infrastructure.Persistence
 
         public static async Task SeedSampleDataAsync(ApplicationDbContext context)
         {
-            // Seed, if necessary
-            if (context.Rudiments.Any() == false)
-            {
-                var list = new[] { "R", "L", "r", "l" };
-                for (var i = 3; i <= 7; i++)
-                {
-                    foreach (var combination in Repeat(list, i).CartesianProduct())
-                    {
-                        context.Rudiments.Add(new Rudiment
-                        {
-                            Pattern = string.Join("", combination.ToArray()),
-                            Type = i
-                        });
-                    }
-                }
-
-                await context.SaveChangesAsync();
-            }
+            throw new NotImplementedException();
         }
 
-        public static IEnumerable<IEnumerable<T>> CartesianProduct<T>(this IEnumerable<IEnumerable<T>> sequences)
-        {
-            IEnumerable<IEnumerable<T>> emptyProduct = new[] { Enumerable.Empty<T>() };
-            return sequences.Aggregate(
-                emptyProduct,
-                (accumulator, sequence) =>
-                    from accseq in accumulator
-                    from item in sequence
-                    select accseq.Concat(new[] { item }));
-        }
     }
 }
