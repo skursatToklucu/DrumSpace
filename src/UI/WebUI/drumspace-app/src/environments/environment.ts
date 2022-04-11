@@ -4,7 +4,14 @@
 
 export const environment = {
   production: false,
-  baseUrl: "http://194.5.236.155/api"
+  baseUrl: 'http://194.5.236.155/api',
+
+  //Miro APIs
+  createBoard: 'https://api.miro.com/v2/boards',
+  copyBoard: 'https://api.miro.com/v2/boards',
+  getBoardsOfTeam : 'https://api.miro.com/v2/boards',
+  
+
 
 
   // baseUrl: "https://localhost:5001/api"
